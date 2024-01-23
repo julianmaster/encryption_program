@@ -1,4 +1,4 @@
-from cryptography.fernet import Fernet
+from ferent import Ferent
 
 def main():
     code = None
@@ -7,7 +7,7 @@ def main():
 
     key = b'2YO2wd6yZXxSKOldJVESjc79nugyGSLwmvob9e0XuLw='
 
-    encryption_type = Fernet(key)
+    encryption_type = Ferent(key)
     encrypted_code = encryption_type.encrypt(code.encode('utf-8'))
 
     print(encrypted_code)

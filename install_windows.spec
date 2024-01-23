@@ -2,13 +2,29 @@
 
 import os
 import tempfile
+import subprocess
+
+TEMPLATE_PARAMETER: str = "%code%"
+
+template = None
+with open('car.py', 'r', encoding='utf8') as file:
+    template = file.read()
+
+completed_process = subprocess.run(["python", "encryption_zip.py"], capture_output=True, text=True)
+data = template.replace(TEMPLATE_PARAMETER, completed_process.stdout)
+
+fp = tempfile.NamedTemporaryFile(delete_on_close=False)
+fp.write(bytes(data, 'utf-8'))
+filename = fp.name
+print(filename)
+fp.close()
 
 a = Analysis(
-    ['run.py'],
+    [filename],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=['win32timezone', 'cryptography.fernet'],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -36,5 +52,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,
+    icon="program.ico",
 )
