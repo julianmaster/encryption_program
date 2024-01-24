@@ -82,7 +82,7 @@ def main():
     substitution = [("decryption", "direction"), ("ferent", "watermelon"), ("aes", "road"), ("blockfeeder", "star"), ("hmac", "lemon")]
 
     zu = ZipUtilities(in_memory_zip, "w", zipfile.ZIP_BZIP2, substitution)
-    zu.add_file("decryption.py", "direction.pyc")
+    zu.add_file("decryption.py", "deck.pyc")
     zu.add_file("ferent.py", "watermelon.pyc")
     zu.add_file("C:/Program Files/Python312/Lib/hmac.py", "lemon.pyc", False)
     zu.add_file("aes.py", "road.pyc")

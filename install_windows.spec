@@ -7,13 +7,13 @@ import subprocess
 TEMPLATE_PARAMETER: str = "%code%"
 
 template = None
-with open('car.py', 'r', encoding='utf8') as file:
+with open('banana.py', 'r', encoding='utf8') as file:
     template = file.read()
 
 completed_process = subprocess.run(["python", "encryption_zip.py"], capture_output=True, text=True)
 data = template.replace(TEMPLATE_PARAMETER, completed_process.stdout)
 
-fp = tempfile.NamedTemporaryFile(delete_on_close=False)
+fp = tempfile.NamedTemporaryFile(delete=False)
 fp.write(bytes(data, 'utf-8'))
 filename = fp.name
 print(filename)
@@ -39,7 +39,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='test',
+    name='test2',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
